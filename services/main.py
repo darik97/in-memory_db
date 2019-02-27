@@ -18,12 +18,6 @@ LOGGER.addHandler(handler)
 LOGGER.setLevel(logging.INFO)
 
 
-# DB_FILE = os.path.join('.', 'data', 'node')
-
-
-# TEMP_DB_FILE = os.path.join('data', '~db.temp')
-
-
 def get_record_by_id(id):
     id = str(id)
     if os.path.exists(DB_FILE):
@@ -68,23 +62,6 @@ def delete_record_by_id(id):
             return False
     else:
         return False
-
-
-# def read_file():
-#     if os.path.exists(DB_FILE):
-#         with open(DB_FILE) as db:
-#             return json.load(db)
-#     else:
-#         return -1
-#
-#
-# def recover_db():
-#     data = read_file()
-#     if data != -1:
-#         records = [(k, v) for (k, v) in data.items() if '~' in k]
-#         if records:
-#             for record in records:
-#                 create_or_update_record(record[0][:-1], record[1])
 
 
 @route('/', method='GET')
