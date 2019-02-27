@@ -32,6 +32,7 @@ def get_record(id):
     try:
         node_url = get_node_url(id)
         r = http.request('GET', node_url + f'/{id}', headers=HEADERS)
+        return json.loads(r.data)
     except HTTPError as er:
         print(er)
 
@@ -57,10 +58,8 @@ def get_node_url(id):
 @route('/<id>', method='DELETE')
 def delete_record(id):
     try:
-        current_nodes = get_nodes_list()
-        if OLD_NODES_NUMBER == current_nodes:
-            node_url = get_node_url(id)
-            r = http.request('DELETE', node_url + f'/{id}', headers=HEADERS)
+        node_url = get_node_url(id)
+        r = http.request('DELETE', node_url + f'/{id}', headers=HEADERS)
     except HTTPError as er:
         print(er)
 
